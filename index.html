@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<style>
+  :root {
+    --bg: #f4f1ea; --card: #fffdf8; --fg: #222; --muted: #777; --line: #e2ddd2;
+    --accent: #e07a3f; --columns: 3;
+    font: 15px/1.45 system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --card: #1f2024; --fg: #e6e6e6; --muted: #8b8d93; --line: #2e3036; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); text-decoration: underline; }
+
+  .ticker { display: flex; white-space: nowrap; background: var(--card); border-bottom: 1px solid var(--line); }
+  .ticker .label { flex: none; padding: .55em .9em; background: var(--accent); color: #fff; font-weight: 600; font-size: .85em; display: flex; align-items: center; }
+  .ticker .view { flex: 1; overflow: hidden; }
+  .ticker:hover .track { animation-play-state: paused; }
+  .ticker .track { display: inline-block; padding: .55em 0; animation: scroll linear infinite; }
+  .ticker .item { margin-right: 2.5em; }
+  .ticker .src { color: var(--accent); font-weight: 600; margin-right: .4em; font-size: .85em; }
+  .vticker .view { overflow: hidden; }
+  section.fill { display: flex; flex-direction: column; max-height: none; }
+  section.fill > div:last-child { flex: 1; min-height: 24em; position: relative; }
+  section.fill .view { position: absolute; inset: 0; }
+  .vticker .view:hover .track { animation-play-state: paused; }
+  .vticker .track { animation: vscroll linear infinite; }
+  .vticker .item { padding: .45em 0; border-bottom: 1px solid var(--line); }
+  .vticker .tag { color: #fff; font-size: .7em; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .15em .5em; border-radius: 4px; margin-right: .5em; vertical-align: .1em; }
+  @keyframes vscroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .vticker .track, .ticker .track { animation: none; } .vticker .view { overflow: auto; } }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  main { display: grid; grid-template-columns: repeat(var(--columns), 1fr); gap: 16px; padding: 16px; grid-auto-flow: dense; }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; } main > section { grid-column: auto !important; } }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; overflow: auto; max-height: 34em; }
+  section.tall { max-height: 70em; }
+  h2 { margin: 0 0 .6em; font-size: .8em; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h2:not(:first-child) { margin-top: 1.4em; }
+  ul { margin: 0; padding-left: 1.1em; }
+  li { margin: .3em 0; }
+  .muted { color: var(--muted); font-size: .85em; }
+  .err { color: #c0392b; font-size: .85em; }
+  .feed li { list-style: none; margin-left: -1.1em; padding: .35em 0; border-bottom: 1px solid var(--line); }
+  .feed li:last-child { border: 0; }
+  .feed .postlink { margin-left: .4em; font-size: .85em; color: var(--muted); }
+  .feed .postlink::before { content: none; }
+  .feed br { display: none; }
+
+  .clock .time { font-size: 3em; font-weight: 300; font-variant-numeric: tabular-nums; }
+  .weather .now { font-size: 2.4em; font-weight: 300; }
+  .weather .days { display: flex; gap: .8em; margin-top: .6em; text-align: center; }
+  .weather .days div { flex: 1; }
+  .weather .panel + .panel { border-top: 1px solid var(--line); margin-top: .8em; padding-top: .8em; }
+  select { background: var(--card); color: inherit; border: 1px solid var(--line); border-radius: 6px; padding: .2em .4em; font: inherit; }
+  .cal .pickers { display: flex; gap: .5em; align-items: center; flex-wrap: wrap; margin-top: .6em; }
+
+  .cal table { width: 100%; border-collapse: collapse; text-align: center; font-size: .9em; }
+  .cal td, .cal th { padding: .25em 0; }
+  .cal th { color: var(--muted); font-weight: 500; }
+  .cal .today { background: var(--accent); color: #fff; border-radius: 50%; }
+  .cal .other { color: var(--muted); opacity: .5; }
+  .cal .has { text-decoration: underline var(--accent) 2px; }
+  .cal .holiday { color: var(--accent); font-weight: 700; }
+  .cal li.holiday::marker { content: '★ '; color: var(--accent); }
+
+  textarea { width: 100%; min-height: 14em; resize: vertical; background: transparent; color: inherit; border: 0; font: inherit; outline: none; }
+  .todo form { display: flex; gap: .5em; margin-bottom: .5em; }
+  .todo input[type=text] { flex: 1; background: transparent; color: inherit; border: 1px solid var(--line); border-radius: 6px; padding: .35em .5em; font: inherit; }
+  .todo li { list-style: none; margin-left: -1.1em; display: flex; gap: .5em; align-items: center; }
+  .todo li.done span { text-decoration: line-through; color: var(--muted); }
+  .todo li button { margin-left: auto; background: none; border: 0; color: var(--muted); cursor: pointer; }
+  iframe { width: 100%; height: 30em; border: 0; }
+</style>
+</head>
+<body>
+<div id="tickers"></div>
+<main id="grid"></main>
+<script src="app.js"></script>
+</body>
+</html>

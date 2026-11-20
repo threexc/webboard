@@ -1,0 +1,166 @@
+{
+  "title": "Home",
+  "columns": 3,
+  "refreshMinutes": 15,
+  "theme": {
+    "--accent": "#e07a3f"
+  },
+  "widgets": [
+    {
+      "type": "headlines",
+      "title": "Headlines",
+      "height": "fill",
+      "speed": 30,
+      "limitPerFeed": 8,
+      "groups": [
+        {
+          "label": "World",
+          "urls": [
+            "https://feeds.bbci.co.uk/news/rss.xml",
+            "https://www.france24.com/en/france/rss"
+          ]
+        },
+        {
+          "label": "Canada",
+          "urls": [
+            "https://www.cbc.ca/webfeed/rss/rss-topstories",
+            "https://www.cbc.ca/webfeed/rss/rss-canada-ottawa",
+            "https://www.cbc.ca/webfeed/rss/rss-canada-newbrunswick",
+            "https://www.cbc.ca/webfeed/rss/rss-Indigenous",
+            "https://thenewinquiry.com/rss"
+          ]
+        },
+        {
+          "label": "Science and Tech",
+          "urls": [
+            "https://lwn.net/headlines/rss",
+            "https://restofworld.org/feed/latest/",
+            "https://www.knowablemagazine.org/rss",
+            "https://feeds2.feedburner.com/NoTechMagazine",
+            "https://solar.lowtechmagazine.com/posts/index.xml",
+            "https://hakaimagazine.com/feed",
+            "https://www.404media.co/rss",
+            "https://lobste.rs/rss",
+            {
+              "url": "https://www.daemonology.net/hn-daily/index.rss",
+              "expand": true
+            }
+          ]
+        }
+      ],
+      "column": 3,
+      "rowSpan": 2
+    },
+    {
+      "type": "group",
+      "widgets": [
+        {
+          "type": "clock",
+          "title": "Now",
+          "format24h": true
+        },
+        {
+          "type": "todo",
+          "title": "To do",
+          "id": "todo-main"
+        }
+      ],
+      "column": 1
+    },
+    {
+      "type": "weather",
+      "title": "Weather",
+      "units": "metric",
+      "days": 5,
+      "show": 2,
+      "locations": [
+        {
+          "name": "Montreal",
+          "latitude": 45.5,
+          "longitude": -73.57
+        },
+        {
+          "name": "Paris",
+          "latitude": 48.86,
+          "longitude": 2.35
+        },
+        {
+          "name": "London",
+          "latitude": 51.51,
+          "longitude": -0.13
+        },
+        {
+          "name": "New York",
+          "latitude": 40.71,
+          "longitude": -74.01
+        },
+        {
+          "name": "Berlin",
+          "latitude": 52.52,
+          "longitude": 13.4
+        },
+        {
+          "name": "Tokyo",
+          "latitude": 35.68,
+          "longitude": 139.69
+        }
+      ],
+      "column": 1
+    },
+    {
+      "type": "calendar",
+      "title": "Calendar",
+      "daysAhead": 14,
+      "urls": [],
+      "holidays": {
+        "show": 2,
+        "count": 3,
+        "regions": [
+          {
+            "name": "Canada",
+            "url": "https://calendar.google.com/calendar/ical/en.canadian%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "France",
+            "url": "https://calendar.google.com/calendar/ical/en.french%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "United Kingdom",
+            "url": "https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "United States",
+            "url": "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "Germany",
+            "url": "https://calendar.google.com/calendar/ical/en.german%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "Italy",
+            "url": "https://calendar.google.com/calendar/ical/en.italian%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "Ireland",
+            "url": "https://calendar.google.com/calendar/ical/en.irish%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "Japan",
+            "url": "https://calendar.google.com/calendar/ical/en.japanese%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          },
+          {
+            "name": "Australia",
+            "url": "https://calendar.google.com/calendar/ical/en.australian%23holiday%40group.v.calendar.google.com/public/basic.ics"
+          }
+        ]
+      },
+      "column": 2
+    },
+    {
+      "type": "notes",
+      "title": "Notes",
+      "id": "notes-main",
+      "column": 2
+    }
+  ]
+}
